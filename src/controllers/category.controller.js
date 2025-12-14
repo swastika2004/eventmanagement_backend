@@ -13,7 +13,7 @@ exports.craeteCategory=async(req,res)=>{
 
 exports.getAllCategory=async(req,res)=>{
     try{
-        const allcategory=await Category.findAll()
+        const allcategory=await Category.find()
         if(allcategory){
             res.status(200).json(allcategory,{message:"Category fetch successfully",status_code:200})
         }
