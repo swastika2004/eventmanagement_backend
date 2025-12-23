@@ -4,21 +4,23 @@ const dotenv = require("dotenv");
 
 const categoryRoutes = require("./src/routes/category.routes");
 const authRoutes = require("./src/routes/auth.routes");
+const eventRoutes = require("./src/routes/event.routes");
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
-// MongoDB
+// MongoDB connection
 mongoose
   .connect("mongodb://localhost:27017/eventmanagement")
   .then(() => console.log("MongoDB connected"))
-  .catch(console.error);
+  .catch((err) => console.error(err));
 
 // Routes
 app.use("/api/categories", categoryRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/event", eventRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {
